@@ -1,0 +1,153 @@
+@import "bootstrap";
+@import url(http://fonts.googleapis.com/css?family=Lato:700,900);
+
+/* mixins, variables, etc. */
+
+$grayMediumLight: #eaeaea;
+$lightGray: #999;
+$ltGray:#EEEEEE;
+$darkGray: #555;
+$white: #fff;
+$grayDarker: #222;
+$bg: #e74c3c;
+/* universal */
+html {
+  overflow-y: scroll;
+}
+
+body {
+  padding-top: 60px;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+  h1 {
+    margin-bottom: 10px;
+  }
+}
+
+
+/* typography */
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.2em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+  color: $lightGray;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+
+/* header */
+
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+  line-height: 1;
+  &:hover {
+    color: $white;
+    text-decoration: none;
+  }
+}
+
+
+
+/* footer */
+
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+  border-top: 1px solid $grayMediumLight;
+  color: $lightGray;
+  a {
+    color: $darkGray;
+    &:hover {
+      color: $grayDarker;
+    }
+  }
+  small {
+    float: left;
+  }
+  ul {
+    float: right;
+    list-style: none;
+    li {
+      float: left;
+      margin-left: 10px;
+    }
+  }
+}
+
+
+/**
+ * A Long-shadow mixin, guaranteed to make your Dribbble shots 11% cooler
+ * @param  string  $color_a  The darkest colour (closest the object)
+ * @param  string  $color_b  The lightest colour (often the background colour)
+ * @param  int     $stepnum  Number of steps
+ * @param  int     $opacity  The opacity of the blend
+ * @return list         	   Returns a list ready to drop into 'box-shadow' or text-shadow
+ */
+@function longshadow($color_a,$color_b,$stepnum, $opacity: 1){
+
+  $gradient_steps: null;
+
+  @for $i from 1 through $stepnum {
+
+    $weight: ( ( $i - 1 ) / $stepnum ) * 100;
+
+    $colour_mix: mix($color_b, rgba($color_a, $opacity), $weight);
+
+    $seperator: null;
+
+    @if($i != $stepnum){
+      $seperator: #{','};
+    }
+
+    $gradient_steps: append( #{$gradient_steps}, #{$i}px #{$i}px $colour_mix $seperator );
+
+  }
+
+  @return $gradient_steps;
+
+}
+
+
+.text-longshadow{
+  color: #fff;
+  font-size: 8rem;
+  line-height: 8rem;
+  font-family: lato;
+  font-weight: 900;
+  text-align: center;
+  text-shadow: longshadow(darken($ltGray,30%),$ltGray,50, 0.5);
+}
