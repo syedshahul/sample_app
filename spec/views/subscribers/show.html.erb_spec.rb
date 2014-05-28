@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe "users/show" do
+describe "subscribers/show" do
   before(:each) do
-    @user = assign(:user, stub_model(User,
+    @subscriber = assign(:subscriber, stub_model(Subscriber,
       :name => "Name",
       :email => "Email"
     ))

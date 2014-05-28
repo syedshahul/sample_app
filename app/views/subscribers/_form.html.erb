@@ -1,0 +1,28 @@
+<%= form_for(@subscriber, :html => {:class=>"form-inline"}) do |f| %>
+  <% if @subscriber.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@subscriber.errors.count, "error") %> prohibited this subscriber from being saved:</h2>
+
+      <ul>
+      <% @subscriber.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+		<div class="form-group">
+
+			<%= f.label :name, :class=> "sr-only" %>
+    <%= f.text_field :name, :class=> "form-control input-lg",
+										 :placeholder=>:name %>
+  </div>
+		<div class="form-group">
+			<%= f.label :email, :class=> "sr-only" %>
+    <%= f.text_field :email, :class=> "form-control input-lg",
+										 :placeholder=>:email %>
+  </div>
+
+    <%= f.submit :class=>"btn btn-default" %>
+
+<% end %>

@@ -1,11 +1,9 @@
 Rails.application.routes.draw do
-  match '/help',    to: 'static_pages#help',    via: 'get'
-  match '/news',    to: 'static_pages#news',    via: 'get'
-  match '/contact',    to: 'static_pages#contact',    via: 'get'
-  match '/index',    to: 'static_pages#index',    via: 'get'
-  match '/home',    to: 'static_pages#home',    via: 'get'
-  match '/about',    to: 'static_pages#about',    via: 'get'
-  match '/', to: 'static_pages#home', via: 'get'
+
+  resources :subscribers
+
+  get "subscribers/new"
+  get "subscribers/index"
 
   get 'static_pages/news'
 
@@ -21,7 +19,15 @@ Rails.application.routes.draw do
 
   get 'welcome/index'
 
-  resources :users
+  match '/help',    to: 'static_pages#help',    via: 'get'
+  match '/news',    to: 'static_pages#news',    via: 'get'
+  match '/contact',    to: 'static_pages#contact',    via: 'get'
+  match '/index',    to: 'static_pages#index',    via: 'get'
+  match '/home',    to: 'static_pages#home',    via: 'get'
+  match '/about',    to: 'static_pages#about',    via: 'get'
+  match '/', to: 'static_pages#home', via: 'get'
+  match '/signup',  to: 'subscribers#new',            via: 'get'
+  match '/subscribers',  to: 'subscribers#index',            via: 'get'
   resources :static_pages
 
   # The priority is based upon order of creation: first created -> highest priority.
