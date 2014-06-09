@@ -28,6 +28,11 @@ class SubscribersController < ApplicationController
 
     respond_to do |format|
       if @subscriber.save
+        base_uri = 'https://xkeys.firebaseio.com/'
+        firebase = Firebase::Client.new(base_uri)
+        response = firebase.push("subscribers", { :name => @subscriber.name,
+                                                  :email => @subscriber.email })
+        puts "response code : #{response.code}"
         format.html { redirect_to @subscriber, notice: 'Subscriber was successfully created.' }
         format.json { render :show, status: :created, location: @subscriber }
       else

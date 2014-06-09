@@ -3,6 +3,7 @@ ruby '2.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.0'
+gem 'firebase',group: :development
 gem 'bootstrap-sass', '2.3.2.0'
 gem 'sprockets', '2.11.0'
 # Use sqlite3 as the database for Active Record
